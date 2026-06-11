@@ -1,13 +1,14 @@
 from fastapi import APIRouter
-from backend.tools.github_actions import generate_python_pipeline
+from backend.tools.github_actions import generate_pipeline
 
 router = APIRouter()
 
-@router.get("/generate-pipeline")
-def generate_pipeline():
+@router.get("/generate-pipeline/{language}")
+def pipeline(language: str):
 
-    pipeline = generate_python_pipeline()
+    result = generate_pipeline(language)
 
     return {
-        "pipeline": pipeline
+        "language": language,
+        "pipeline": result
     }
