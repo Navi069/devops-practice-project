@@ -1,11 +1,14 @@
 from fastapi import FastAPI
+
 from backend.routes.pipeline import router as pipeline_router
 from backend.routes.terraform import router as terraform_router
 from backend.routes.ai import router as ai_router
 from backend.routes.ai_terraform import router as ai_terraform_router
+from backend.routes.ai_pipeline import router as ai_pipeline_router
+from backend.routes.jenkins_analyzer import router as jenkins_router
 
 app = FastAPI(
-    title="DevOps AI Copilot",
+    title="DevOps AI Chatbot",
     description="AI-powered DevOps Assistant",
     version="1.0.0"
 )
@@ -15,6 +18,8 @@ app.include_router(pipeline_router)
 app.include_router(terraform_router)
 app.include_router(ai_router)
 app.include_router(ai_terraform_router)
+app.include_router(ai_pipeline_router)
+app.include_router(jenkins_router)
 
 # Home route
 @app.get("/")
